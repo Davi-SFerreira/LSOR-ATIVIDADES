@@ -31,7 +31,7 @@ Para a realização da atividade, foram utilizados os seguintes recursos:
   - Oracle VirtualBox
 
 - **Sistema operacional convidado (guest):**
-  - Ubuntu 26.04 Server
+  - Ubuntu 22.04 Server
 
 - **Configuração da máquina virtual:**
   - Memória RAM alocada: 2048MB
