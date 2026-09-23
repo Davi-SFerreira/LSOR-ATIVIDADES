@@ -48,7 +48,7 @@ Esta atividade prática teve como objetivo realizar a transição do adaptador d
 **Passo 1 — Alteração do adaptador de rede para Placa em Ponte (Bridge)**
 Nas configurações da VM no VirtualBox, o Adaptador 1 foi alterado de NAT para **Placa em modo Bridge**, selecionando a placa física *Realtek PCIe GbE Family Controller* como interface de saída.
 
-![Configuração da placa em modo Bridge no VirtualBox](imagens_aula6/Captura_de_tela_2026-09-23_194212.png)
+![Configuração da placa em modo Bridge no VirtualBox](imagens_aula6/Captura%20de%20tela%202026-09-23%20194212.png)
 *Figura 1: Adaptador 1 configurado em modo Bridge, conectado à placa de rede física do host.*
 
 **Passo 2 — Teste de disponibilidade do IP candidato**
@@ -57,7 +57,7 @@ Antes de aplicar o IP `172.20.23.1` na VM, foi testada sua disponibilidade a par
 ping 172.20.23.1
 ```
 
-![Teste de ping ao IP candidato](imagens_aula6/Captura_de_tela_2026-09-23_194427.png)
+![Teste de ping ao IP candidato](imagens_aula6/Captura%20de%20tela%202026-09-23%20194427.png)
 *Figura 2: Resposta de `172.20.21.190` ao ping para `172.20.23.1`, indicando resposta de outro host na rede (ver observação na seção 6).*
 
 **Passo 3 — Verificação do arquivo de configuração do Netplan**
@@ -65,7 +65,7 @@ ping 172.20.23.1
 ls /etc/netplan
 ```
 
-![Listagem do diretório /etc/netplan](imagens_aula6/Captura_de_tela_2026-09-23_194627.png)
+![Listagem do diretório /etc/netplan](imagens_aula6/Captura%20de%20tela%202026-09-23%20194627.png)
 *Figura 3: Arquivo `00-installer-config.yaml` localizado no diretório padrão do Netplan.*
 
 **Passo 4 — Edição do arquivo YAML com o endereço estático**
@@ -92,7 +92,7 @@ network:
           - 8.8.8.8
 ```
 
-![Edição do arquivo netplan no nano](imagens_aula6/Captura_de_tela_2026-09-23_195236.png)
+![Edição do arquivo netplan no nano](imagens_aula6/Captura%20de%20tela%202026-09-23%20195236.png)
 *Figura 4: Arquivo YAML editado com o endereço estático, rota padrão e servidores DNS.*
 
 **Passo 5 — Conferência do conteúdo do arquivo com `cat`**
@@ -101,7 +101,7 @@ cat /etc/netplan/00-installer-config.yaml
 sudo cat /etc/netplan/00-installer-config.yaml
 ```
 
-![Conferência do arquivo com cat](imagens_aula6/Captura_de_tela_2026-09-23_195349.png)
+![Conferência do arquivo com cat](imagens_aula6/Captura%20de%20tela%202026-09-23%20195349.png)
 *Figura 5: Primeira tentativa negada por falta de permissão; conteúdo exibido corretamente com `sudo cat`.*
 
 **Passo 6 — Aplicação da configuração com `netplan apply`**
@@ -109,7 +109,7 @@ sudo cat /etc/netplan/00-installer-config.yaml
 sudo netplan apply
 ```
 
-![Primeira execução do netplan apply](imagens_aula6/Captura_de_tela_2026-09-23_195421.png)
+![Primeira execução do netplan apply](imagens_aula6/Captura%20de%20tela%202026-09-23%20195421.png)
 *Figura 6: Aviso `Cannot call Open vSwitch: ovsdb-server.service is not running` exibido, sem impedir a aplicação da configuração.*
 
 **Passo 7 — Investigação do aviso do Open vSwitch**
@@ -118,7 +118,7 @@ sudo netplan apply
 sudo systemctl start openswitch-switch
 ```
 
-![Tentativa de iniciar o serviço openswitch-switch](imagens_aula6/Captura_de_tela_2026-09-23_195830.png)
+![Tentativa de iniciar o serviço openswitch-switch](imagens_aula6/Captura%20de%20tela%202026-09-23%20195830.png)
 *Figura 7: Unidade `openswitch-switch.service` não encontrada — aviso identificado como não crítico (ver seção 6).*
 
 **Passo 8 — Conferência final do arquivo YAML**
@@ -126,7 +126,7 @@ sudo systemctl start openswitch-switch
 sudo nano /etc/netplan/00-installer-config.yaml
 ```
 
-![Conferência final do arquivo YAML](imagens_aula6/Captura_de_tela_2026-09-23_195948.png)
+![Conferência final do arquivo YAML](imagens_aula6/Captura%20de%20tela%202026-09-23%20195948.png)
 *Figura 8: Sintaxe final do arquivo validada visualmente antes de novos testes.*
 
 **Passo 9 — Verificação do endereço atribuído à interface**
@@ -134,7 +134,7 @@ sudo nano /etc/netplan/00-installer-config.yaml
 ip addr show enp0s3
 ```
 
-![Verificação do IP atribuído com ip addr show](imagens_aula6/Captura_de_tela_2026-09-23_200553.png)
+![Verificação do IP atribuído com ip addr show](imagens_aula6/Captura%20de%20tela%202026-09-23%20200553.png)
 *Figura 9: Endereço `172.20.23.1/22` atribuído com sucesso à interface `enp0s3`.*
 
 ---
@@ -146,7 +146,7 @@ ip addr show enp0s3
 ping 172.20.23.1
 ```
 
-![Ping do Windows para a VM](imagens_aula6/Captura_de_tela_2026-09-23_200637.png)
+![Ping do Windows para a VM](imagens_aula6/Captura%20de%20tela%202026-09-23%20200637.png)
 *Figura 10: Respostas recebidas de `172.20.23.1` com 0% de perda de pacotes, confirmando a visibilidade da VM na rede local via Bridge.*
 
 **Teste B — Ping da VM para o Host Windows**
@@ -154,7 +154,7 @@ ping 172.20.23.1
 ping -c 4 172.20.21.190
 ```
 
-![Ping da VM para o host Windows](imagens_aula6/Captura_de_tela_2026-09-23_200906.png)
+![Ping da VM para o host Windows](imagens_aula6/Captura%20de%20tela%202026-09-23%20200906.png)
 *Figura 11: 100% de perda de pacotes — problema registrado e analisado na seção 6.*
 
 **Teste C — Tentativa inicial de traceroute (comando não encontrado)**
@@ -162,7 +162,7 @@ ping -c 4 172.20.21.190
 traceroute google.com
 ```
 
-![Comando traceroute não encontrado](imagens_aula6/Captura_de_tela_2026-09-23_201104.png)
+![Comando traceroute não encontrado](imagens_aula6/Captura%20de%20tela%202026-09-23%20201104.png)
 *Figura 12: Utilitário `traceroute` não instalado — corrigido conforme descrito na seção 6.*
 
 **Teste D — Traceroute para google.com**
@@ -170,7 +170,7 @@ traceroute google.com
 traceroute google.com
 ```
 
-![Traceroute para google.com](imagens_aula6/Captura_de_tela_2026-09-23_201252.png)
+![Traceroute para google.com](imagens_aula6/Captura%20de%20tela%202026-09-23%20201252.png)
 *Figura 13: Rota traçada até `google.com` (172.217.162.206), com o primeiro salto no gateway `172.20.20.1`.*
 
 **Teste E — Traceroute para one.one.one.one**
@@ -178,7 +178,7 @@ traceroute google.com
 traceroute one.one.one.one
 ```
 
-![Traceroute para one.one.one.one](imagens_aula6/Captura_de_tela_2026-09-23_201319.png)
+![Traceroute para one.one.one.one](imagens_aula6/Captura%20de%20tela%202026-09-23%20201319.png)
 *Figura 14: Rota traçada até `one.one.one.one` (1.1.1.1), confirmando a resolução DNS e o roteamento externo.*
 
 ---
